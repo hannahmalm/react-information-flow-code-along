@@ -4,6 +4,7 @@ import Child from './Child'
 
 class Parent extends Component {
 
+  //state lets the color change -> pass this in as a prop
   constructor() {
     super()
     this.state = {
@@ -11,11 +12,17 @@ class Parent extends Component {
     }
   }
 
+  changeColor = () => {
+    this.setState({
+      color: getRandomColor(),
+    });
+  }
+
   render() {
     return (
       <div className="parent" style={{backgroundColor: this.state.color}}>
-        <Child />
-        <Child />
+        <Child handleColorChange={this.changeColor}/>
+        <Child handleColorChange={this.changeColor}/>
       </div>
     )
   }
